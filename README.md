@@ -1,4 +1,4 @@
-# myCompiler — C Subset to LLVM IR Compiler
+# Small C Compiler — C Subset to LLVM IR Compiler
 
 > 一個用 **ANTLR4 + Java** 從零實作的 C 語言子集編譯器，將 `.c` 原始碼編譯成 **LLVM IR**，再透過 clang 產生可執行檔。內建語意分析、邊界防護，以及完整的編譯期最佳化流程(常數折疊、CSE、DCE、LICM、全域常數傳播、迴圈展開、尾呼叫優化等)，並以多組自動化回歸測試驗證正確性。
 
@@ -22,7 +22,7 @@ A from-scratch C-subset compiler built with ANTLR4 + Java that emits LLVM IR, co
 
 ## 專案簡介
 
-`myCompiler` 是一個將 C 語言子集翻譯成 LLVM IR 的編譯器，前端使用 ANTLR 4.13.2 產生 Lexer / Parser，並以 Visitor pattern 在語法樹走訪階段直接產生 IR；後端產生的 `.ll` 檔案可以直接用 `clang` 搭配隨附的 `myRuntime.c` 執行期函式庫編譯、連結並執行。
+`Small C Compiler` 是一個將 C 語言子集翻譯成 LLVM IR 的編譯器，前端使用 ANTLR 4.13.2 產生 Lexer / Parser，並以 Visitor pattern 在語法樹走訪階段直接產生 IR；後端產生的 `.ll` 檔案可以直接用 `clang` 搭配隨附的 `myRuntime.c` 執行期函式庫編譯、連結並執行。
 
 整個專案除了單純的「翻譯」之外，還實作了**語意分析**(型別檢查、隱式轉換、作用域管理)、**安全防護**(陣列邊界檢查、缺少 return 警告)以及**編譯器後端最佳化**，目標是盡量貼近真實編譯器(如 clang/GCC)的行為，而不只是滿足語法上的對應。
 
